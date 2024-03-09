@@ -4,6 +4,7 @@ const getAll = "SELECT * FROM posts";
 const getOne = "SELECT * FROM posts WHERE id = $1";
 const update = "UPDATE posts SET title = $1, content = $2 WHERE id = $3";
 const deleteOne = "DELETE FROM posts WHERE id = $1";
+const deleteMany = "DELETE FROM posts WHERE id = ANY($1::int[])";
 
 module.exports = {
   addPost,
@@ -11,4 +12,5 @@ module.exports = {
   getOne,
   update,
   deleteOne,
+  deleteMany,
 };

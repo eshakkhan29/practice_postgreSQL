@@ -1,5 +1,12 @@
 const pool = require("../../utils/db");
-const { getAll, addPost, getOne, update, deleteOne } = require("./queries");
+const {
+  getAll,
+  addPost,
+  getOne,
+  update,
+  deleteOne,
+  deleteMany,
+} = require("./queries");
 // create a new post
 const createPost = (req, res) => {
   const { title, content } = req.body;
@@ -50,10 +57,21 @@ const deletePost = (req, res) => {
     res.status(200).send({ message: "Post deleted successfully!" });
   });
 };
+// delete many posts
+const deleteManyPosts = (req, res) => {
+  const ids = req.body.ids;
+  pool.query(deleteMany, [ids], (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.status(200).send({ message: "Posts deleted successfully!" });
+  });
+};
 module.exports = {
   createPost,
   getPosts,
   getPost,
   updatePost,
   deletePost,
+  deleteManyPosts,
 };

@@ -12,5 +12,7 @@ routes.get("/:id", controller.getPost);
 routes.put("/:id", controller.updatePost);
 // delete a post
 routes.delete("/:id", controller.deletePost);
+// delete many posts
+routes.delete("/", controller.deleteManyPosts);
 
 module.exports = routes;
